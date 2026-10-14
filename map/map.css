@@ -1,0 +1,100 @@
+/* ===========================================================
+   Philippines Map — styles
+   =========================================================== */
+
+  /* Container frame for fixed absolute positioning */
+  .map-panel{
+    position:relative; 
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:16px;
+    min-width:0;
+    overflow:hidden;
+    box-shadow:var(--shadow-md);
+  }
+
+  .map-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .map-head h2{font-size:13px;font-weight:600;color:var(--ink);}
+  .legend{display:flex;gap:14px;font-size:11px;color:var(--muted);font-weight:500;}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .legend i{width:7px;height:7px;border-radius:50%;display:inline-block;}
+  .legend .lg-open{background:var(--open);}
+  .legend .lg-closed{background:var(--closed);}
+
+  /* Fixed Zoom Controls overlay */
+  .zoom-ctrl{
+    position:absolute;
+    top:56px; /* Offset to clear .map-head and panel padding */
+    right:28px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:9px;
+    box-shadow:var(--shadow-md);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:10;
+  }
+  .zoom-btn{
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+    background:#fff;
+    border:none;
+    font-family:var(--f);
+    transition:background .12s;
+  }
+  .zoom-btn:hover{background:var(--bg);}
+  .zoom-btn:active{background:#eceef1;}
+  .zoom-btn + .zoom-btn{border-top:1px solid var(--border);}
+  .zoom-level{
+    font-size:9.5px;
+    color:var(--muted);
+    text-align:center;
+    padding:4px 0;
+    border-top:1px solid var(--border);
+    background:var(--bg);
+    font-weight:600;
+  }
+
+
+  .map-scroll{
+    height:700px;overflow:auto;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:transparent transparent;border:1px solid var(--border);border-radius:var(--radius);
+    background:#f4f7f5;position:relative;
+  }
+  .map-scroll.is-scrolling{scrollbar-color:#9ca3af transparent;}
+  .map-scroll.dragging{cursor:grabbing;}
+  .map-scroll::-webkit-scrollbar{width:9px;height:9px;}
+  .map-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px;transition:background-color .2s ease;}
+  .map-scroll.is-scrolling::-webkit-scrollbar-thumb{background:#9ca3af;}
+  .map-scroll::-webkit-scrollbar-track{background:transparent;}
+
+  .map-inner{position:relative;width:640px;padding:14px 0;margin:0 auto;cursor:grab;}
+  svg.phmap{display:block;width:100%;height:auto;}
+  .landmass{fill:var(--forest);stroke:#14331f;stroke-width:0.5;stroke-linejoin:round;}
+
+  .pin{cursor:pointer;}
+  .pin circle.halo{opacity:0;}
+  .pin.emergency circle.halo{fill:var(--closed);opacity:.4;animation:pulse 1.8s ease-out infinite;}
+  @keyframes pulse{0%{r:5;opacity:.5;}100%{r:15;opacity:0;}}
+  .pin circle.core{stroke:#fff;stroke-width:1.6;}
+  .pin:hover circle.core{stroke-width:2.4;}
+
+  .tooltip{
+    position:absolute;pointer-events:none;background:#20242f;color:#fff;
+    font-size:11px;font-weight:500;padding:7px 10px;border-radius:7px;line-height:1.5;
+    transform:translate(-50%,-118%);white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5;
+  }
+  .tooltip.show{opacity:1;}
+  .tooltip .t-name{font-weight:600;font-size:11.5px;display:block;}
+  .tooltip .t-status.open{color:#7be3a0;}
+  .tooltip .t-status.closed{color:#f4a3a3;}
+
+  .map-hint{font-size:10.5px;color:var(--muted);margin-top:8px;text-align:center;}

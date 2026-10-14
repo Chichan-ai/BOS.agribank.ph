@@ -1,0 +1,9 @@
+/* ===========================================================
+   Archive — styles
+   ---------------------------------------------------------------
+   The Archive table reuses the shared .request-admin-table /
+   .request-admin-empty classes defined in
+   approvals/approvals.css, so there are no archive-only rules
+   in the original design. This file is kept as a placeholder —
+   add archive-specific overrides here if you introduce any.
+   =========================================================== */

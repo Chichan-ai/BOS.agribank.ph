@@ -1,0 +1,131 @@
+<!-- ===========================================================
+     User Access Settings — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-user-access">
+    <div class="page-head">
+      <div class="page-title">User Access Settings</div>
+      <div class="page-sub">Manage users and their permissions for system modules and features. Admin I (Approval) reviews and approves/rejects branch status requests; Admin II (User Access) configures permissions and creates users. Toggle any permission below to customize further.</div>
+    </div>
+    <div class="directory-head-row">
+      <div class="access-hint access-hint-inline">Toggle permissions for each user. As the main Admin, your changes save immediately; Admin II's changes are submitted for your approval below.</div>
+      <button type="button" class="btn btn-primary admin-only" id="openAddUserBtn">+ Add User</button>
+    </div>
+    <div class="access-table-wrap">
+      <table class="access-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th>Login</th>
+            <th>Dashboard</th>
+            <th>Request</th>
+            <th>Approve</th>
+            <th>User Access</th>
+            <th>Archive</th>
+            <th>Export</th>
+            <th>Manage Users</th>
+            <th>Audit Log</th>
+            <th class="user-access-user-action-col admin-only">Action</th>
+          </tr>
+        </thead>
+        <tbody id="accessTableBody"></tbody>
+      </table>
+    </div>
+
+    <div id="userAccessApprovalsBlock" class="user-access-approvals">
+      <div class="page-head user-access-approvals-head">
+        <div class="page-title user-access-approvals-title">Pending User Access Requests</div>
+        <div class="page-sub">Permission changes and new users submitted by Admin II require your approval before they take effect.</div>
+      </div>
+      <div class="request-admin-table-wrap">
+        <table class="request-admin-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Requested By</th>
+              <th>Details</th>
+              <th>Submitted</th>
+              <th class="user-access-action-col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="userAccessRequestsTableBody"></tbody>
+        </table>
+        <div id="userAccessRequestsEmpty" class="request-admin-empty user-access-requests-empty">No pending user access requests.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sms-scrim" id="resetPasswordScrim"></div>
+  <div class="sms-modal ab-modal" id="resetPasswordModal">
+    <div class="sms-modal-head">
+      <h3>Reset User Password</h3>
+      <button class="sms-close" id="resetPasswordModalClose">✕</button>
+    </div>
+    <div class="sms-modal-body">
+      <form id="resetPasswordForm" class="ab-modal-body">
+        <div class="f-group full">
+          <label>User</label>
+          <div id="resetPasswordUser" class="reset-password-user">—</div>
+        </div>
+        <div class="f-group full">
+          <label for="resetPasswordInput">New Temporary Password</label>
+          <input type="password" id="resetPasswordInput" minlength="8" autocomplete="new-password" required>
+          <div class="f-help">Use at least 8 characters and share it securely.</div>
+        </div>
+      </form>
+    </div>
+    <div class="sms-modal-foot">
+      <button class="btn btn-ghost" id="resetPasswordCancelBtn">Cancel</button>
+      <button class="btn btn-primary" id="resetPasswordSaveBtn">Reset Password</button>
+    </div>
+  </div>
+
+<div class="sms-scrim" id="addUserScrim"></div>
+<div class="sms-modal ab-modal" id="addUserModal">
+  <div class="sms-modal-head">
+    <h3>Add New User</h3>
+    <button class="sms-close" id="addUserModalClose">✕</button>
+  </div>
+  <div class="sms-modal-body">
+    <form id="addUserForm" class="ab-modal-body">
+      <div class="f-group">
+        <label for="auFullName">Full Name</label>
+        <input type="text" id="auFullName" placeholder="e.g. Juan Dela Cruz" required>
+      </div>
+      <div class="f-group">
+        <label for="auUsername">Username</label>
+        <input type="text" id="auUsername" placeholder="e.g. jdelacruz" required>
+      </div>
+      <div class="f-group full">
+        <label for="auEmail">Email</label>
+        <input type="email" id="auEmail" placeholder="e.g. jdelacruz@agribank.ph" required>
+      </div>
+      <div class="f-group">
+        <label for="auPassword">Temporary Password</label>
+        <input type="text" id="auPassword" placeholder="min. 6 characters" required>
+      </div>
+      <div class="f-group">
+        <label for="auRole">Role</label>
+        <select id="auRole" required>
+          <option value="staff">Staff</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="admin1">Admin I — Approval</option>
+          <option value="admin2">Admin II — User Access</option>
+        </select>
+      </div>
+      <div class="f-group full">
+        <label for="auRoleLabel">Role Label</label>
+        <input type="text" id="auRoleLabel" placeholder="e.g. Staff · NCR">
+      </div>
+    </form>
+    <div class="sms-config-note add-user-note">
+      <strong>ℹ Note</strong> — If you're the main admin, this creates the account immediately. Otherwise it's submitted to the main admin for approval before the account is created. Share the temporary password with the user securely and have them change it on first login. If email confirmation is enabled in Supabase Auth, the user must confirm their email before they can sign in.
+    </div>
+  </div>
+  <div class="sms-modal-foot">
+    <button class="btn btn-ghost" id="addUserCancelBtn">Cancel</button>
+    <button class="btn btn-primary" id="addUserSaveBtn">Create User</button>
+  </div>
+</div>
+

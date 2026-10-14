@@ -1,0 +1,94 @@
+<!-- ===========================================================
+     Dashboard (Home) View — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view active" id="view-dashboard">
+    <div class="page-head">
+      <div class="page-title">Branch Operation Dashboard</div>
+      <div class="page-sub">Live status across all branches · pins and alerts update automatically when a request is approved</div>
+    </div>
+    <div class="donuts-row">
+      <div class="donuts-pair">
+        <div class="donut-card">
+          <div class="donut-card-head"><h3>Branch Status</h3></div>
+          <div class="donut-body">
+            <div class="donut-svg-wrap">
+              <svg viewBox="0 0 128 128" id="donutStatusSvg"></svg>
+              <div class="donut-center">
+                <div class="donut-center-value" id="donutStatusValue">0</div>
+                <div class="donut-center-label">Total</div>
+              </div>
+            </div>
+            <div class="donut-legend" id="donutStatusLegend"></div>
+          </div>
+        </div>
+        <div class="donut-card reason-bar-card">
+          <div class="donut-card-head"><h3>Reason for Closure</h3></div>
+          <div class="reason-bar-chart" id="reasonBarChart"><div class="reason-bar-empty">No closed branches</div></div>
+        </div>
+      </div>
+      <div class="donut-card asof-card">
+        <div class="asof-card-head">
+          <label class="asof-card-label" for="asOfDate">As of</label>
+          <input type="date" id="asOfDate">
+          <button type="button" id="asOfTodayBtn" class="btn btn-ghost btn-sm">TODAY</button>
+        </div>
+        <div class="asof-card-body">
+          <div class="pct-values">
+            <div class="pct-stat">
+              <div class="pct-value" id="openPctValue">—%</div>
+              <div class="pct-label open-label">Open branches</div>
+            </div>
+            <div class="pct-stat">
+              <div class="pct-value closed-pct-value" id="closedPctValue">—%</div>
+              <div class="pct-label closed-label">Closed branches</div>
+            </div>
+          </div>
+          <div class="pct-date">as of <span id="openPctDate">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="map-panel">
+        <div class="map-head">
+          <h2>Nationwide Branch Status</h2>
+          <div class="legend">
+            <span><i class="lg-open"></i>Open</span>
+            <span><i class="lg-closed"></i>Closed</span>
+          </div>
+        </div>
+
+        <!-- 1. Move zoom controls OUTSIDE of map-scroll -->
+        <div class="zoom-ctrl">
+          <button class="zoom-btn" id="zoomIn" title="Zoom in">+</button>
+          <button class="zoom-btn" id="zoomOut" title="Zoom out">–</button>
+          <button class="zoom-btn zoom-reset" id="zoomReset" title="Reset zoom">⟲</button>
+          <div class="zoom-level" id="zoomLevel">100%</div>
+        </div>
+
+        <!-- 2. Scroll container only contains the inner map -->
+        <div class="map-scroll" id="mapScroll">
+          <div class="map-inner" id="mapInner">
+            <svg class="phmap" id="phsvg" viewBox="0 0 640 1098.1355364249002"></svg>
+            <div class="tooltip" id="tooltip"></div>
+          </div>
+        </div>
+
+        <div class="map-hint">Scroll to pan · use +/– or ctrl+scroll to zoom · pins are plotted on true coordinates</div>
+      </div>
+    
+
+      <div class="rail">
+        <div class="rail-card rail-card--status">
+          <h3>Nationwide Status</h3>
+          <div id="regionList"></div>
+        </div>
+        <div class="rail-card rail-card--closed">
+          <h3>Closed Branches</h3>
+          <div id="alertFeed"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+

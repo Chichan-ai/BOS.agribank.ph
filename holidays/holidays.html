@@ -1,0 +1,86 @@
+<!-- ===========================================================
+     Holidays List — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-holidays">
+    <div class="page-head">
+      <div class="page-title">2026 Philippine Holidays</div>
+      <div class="page-sub">Based on Proclamation No. 1006 and local proclamations. Local holiday dates are based on 2025 proclamations and may change once 2026 official proclamations are issued.</div>
+    </div>
+    <div class="filter-row" id="holidayFilterRow" style="justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <div class="filter-chip active" data-filter="all">All</div>
+        <div class="filter-chip" data-filter="regular">Regular Holiday</div>
+        <div class="filter-chip" data-filter="special">Special (Non-Working)</div>
+        <div class="filter-chip" data-filter="working">Special (Working)</div>
+        <div class="filter-chip" data-filter="additional">Additional (Non-Working)</div>
+        <div class="filter-chip" data-filter="local">Local Holiday</div>
+      </div>
+      <button type="button" class="btn btn-primary admin-only" id="openAddHolidayBtn">+ Add Holiday</button>
+    </div>
+    <div class="holiday-table-wrap">
+      <table class="holiday-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Holiday</th>
+            <th>Type</th>
+            <th>Reference</th>
+            <th>Scope</th>
+          </tr>
+        </thead>
+        <tbody id="holidayTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+
+<div class="sms-scrim" id="addHolidayScrim"></div>
+<div class="sms-modal ab-modal" id="addHolidayModal">
+  <div class="sms-modal-head">
+    <h3>Add Holiday</h3>
+    <button class="sms-close" id="addHolidayModalClose">✕</button>
+  </div>
+  <div class="sms-modal-body">
+    <form id="addHolidayForm" class="ab-modal-body">
+      <div class="f-group">
+        <label for="ahDate">Date</label>
+        <input type="date" id="ahDate" required>
+      </div>
+      <div class="f-group">
+        <label for="ahType">Type</label>
+        <select id="ahType" required>
+          <option value="regular">Regular Holiday</option>
+          <option value="special">Special (Non-Working) Day</option>
+          <option value="working">Special (Working) Day</option>
+          <option value="additional">Additional Special (Non-Working) Day</option>
+          <option value="local">Local Holiday</option>
+        </select>
+      </div>
+      <div class="f-group full">
+        <label for="ahName">Holiday Name</label>
+        <input type="text" id="ahName" placeholder="e.g. Founding Anniversary" required>
+      </div>
+      <div class="f-group full">
+        <label for="ahRef">Reference</label>
+        <input type="text" id="ahRef" placeholder="e.g. Proclamation No. 1006">
+      </div>
+      <div class="f-group">
+        <label for="ahScope">Scope</label>
+        <select id="ahScope">
+          <option value="all">All branches (National)</option>
+          <option value="local">Specific branch(es)</option>
+        </select>
+      </div>
+      <div class="f-group full" id="ahBranchesGroup" style="display:none;">
+        <label for="ahBranches">Branch(es)</label>
+        <select id="ahBranches" multiple size="6"></select>
+        <div class="f-help">Hold Ctrl/Cmd to select multiple branches. Leave empty for a local holiday not yet tied to a specific branch.</div>
+      </div>
+    </form>
+  </div>
+  <div class="sms-modal-foot">
+    <button class="btn btn-ghost" id="addHolidayCancelBtn">Cancel</button>
+    <button class="btn btn-primary" id="addHolidaySaveBtn">Save Holiday</button>
+  </div>
+</div>

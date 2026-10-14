@@ -1,0 +1,68 @@
+<!-- ===========================================================
+     Maintenance Reports — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-reports">
+    <div class="page-head">
+      <div class="page-title">Maintenance Reports</div>
+      <div class="page-sub">Generate and export branch status request reports for a selected date range.</div>
+    </div>
+
+    <div class="form-card reports-filter-card">
+      <h2>Report Filters</h2>
+      <div class="hint">Filter submitted requests by date range, category, and status, then generate or export the results.</div>
+      <div class="f-row reports-filter-row">
+        <div class="f-group reports-filter-group reports-filter-group-small">
+          <label for="reportFrom">From</label>
+          <input type="date" id="reportFrom">
+        </div>
+        <div class="f-group reports-filter-group reports-filter-group-small">
+          <label for="reportTo">To</label>
+          <input type="date" id="reportTo">
+        </div>
+        <div class="f-group reports-filter-group reports-filter-group-category">
+          <label for="reportCategory">Category</label>
+          <select id="reportCategory"><option value="all">All categories</option></select>
+        </div>
+        <div class="f-group reports-filter-group reports-filter-group-small">
+          <label for="reportStatus">Status</label>
+          <select id="reportStatus">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" id="reportGenerateBtn">Generate Report</button>
+        <button type="button" class="btn btn-ghost" id="reportExportBtn">Export CSV</button>
+        <button type="button" class="btn btn-ghost" id="reportResetBtn">Reset Filters</button>
+      </div>
+    </div>
+
+    <div class="donut-card reports-summary-card" id="reportSummaryCard" hidden>
+      <div class="donut-card-head"><h3>Summary</h3></div>
+      <div id="reportSummary" class="report-summary"></div>
+    </div>
+
+    <div class="holiday-table-wrap" id="reportTableWrap" hidden>
+      <table class="holiday-table" id="reportTable">
+        <thead>
+          <tr>
+            <th>Request ID</th>
+            <th>Branch</th>
+            <th>Region</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Change</th>
+            <th>Status</th>
+            <th>Submitted</th>
+            <th>Reviewed</th>
+          </tr>
+        </thead>
+        <tbody id="reportTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+

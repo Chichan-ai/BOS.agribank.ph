@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Branch Operations System | Agribank</title>
+<link rel="icon" href="assets/agribankicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  ================================================================
+  CSS — one <link> per module, loaded in the same cascade order
+  as the original single-file build (core/shared tokens first,
+  then feature styles). Keep this order if you add new modules.
+  ================================================================
+-->
+<link rel="stylesheet" href="core/core.css">
+<link rel="stylesheet" href="login/login.css">
+<link rel="stylesheet" href="header/header.css">
+<link rel="stylesheet" href="dashboard/dashboard.css">
+<link rel="stylesheet" href="map/map.css">
+<link rel="stylesheet" href="branch-directory/branch-directory.css">
+<link rel="stylesheet" href="request-form/request-form.css">
+<link rel="stylesheet" href="approvals/approvals.css">
+<link rel="stylesheet" href="sms-notification/sms-notification.css">
+<link rel="stylesheet" href="archive/archive.css">
+<link rel="stylesheet" href="reports/reports.css">
+<link rel="stylesheet" href="holidays/holidays.css">
+<link rel="stylesheet" href="user-access/user-access.css">
+</head>
+<body class="role-admin login-active">
+
+<!-- ============ LOGIN PAGE ============ -->
+<div id="module-login" data-src="login/login.html"></div>
+
+<!-- ============ CBAMS PORTAL (hidden until login) ============ -->
+<div id="portal">
+
+  <div id="module-header" data-src="header/header.html"></div>
+
+  <main>
+    <div id="module-dashboard" data-src="dashboard/dashboard.html"></div>
+    <div id="module-request-form" data-src="request-form/request-form.html"></div>
+    <div id="module-approvals" data-src="approvals/approvals.html"></div>
+    <div id="module-archive" data-src="archive/archive.html"></div>
+    <div id="module-branch-directory" data-src="branch-directory/branch-directory.html"></div>
+    <div id="module-sms-notification" data-src="sms-notification/sms-notification.html"></div>
+    <div id="module-reports" data-src="reports/reports.html"></div>
+    <div id="module-holidays" data-src="holidays/holidays.html"></div>
+    <div id="module-user-access" data-src="user-access/user-access.html"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="portal-name">Branch Operations System</div>
+      <div class="portal-brand">AGRIBUSINESS BANKING CORPORATION - A RURAL BANK</div>
+    </div>
+  </footer>
+
+  <!-- Modals belonging to header/branch-directory/sms/user-access/holidays are
+       appended at the end of their own module HTML fragments above; the core
+       session-timeout modal is injected here. -->
+  <div id="module-core-modals" data-src="core/core.html"></div>
+
+</div><!-- /#portal -->
+
+<!--
+  ================================================================
+  LOADER — fetches every module's HTML fragment into its placeholder
+  div, then loads every module's script in dependency order (see
+  README.md). This file must run before any module script.
+  ================================================================
+-->
+<script src="loader.js"></script>
+
+</body>
+</html>

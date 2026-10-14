@@ -1,0 +1,10 @@
+/* ===========================================================
+   Holidays List — styles
+   ---------------------------------------------------------------
+   The holidays table/filters/modal reuse shared classes defined
+   in core/core.css (.btn, .f-group, .filter-chip, .page-head),
+   approvals/approvals.css (.holiday-table) and
+   branch-directory/branch-directory.css (.sms-modal/.ab-modal,
+   reused for the "Add Holiday" dialog). No holiday-only rules
+   existed in the original design — add overrides here if needed.
+   =========================================================== */

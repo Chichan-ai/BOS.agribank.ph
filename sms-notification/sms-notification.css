@@ -1,0 +1,9 @@
+/* ===========================================================
+   SMS Notification (mockup) — styles
+   ---------------------------------------------------------------
+   Reuses shared classes from core/core.css (.sms-phone,
+   .sms-bubble, .sms-sender, .sms-timestamp, .sms-config-note,
+   .sms-recipients, .sms-modal/.sms-scrim) and
+   request-form/request-form.css (.form-layout, .form-card,
+   .tips-card). No sms-only rules existed in the original design.
+   =========================================================== */

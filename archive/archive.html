@@ -1,0 +1,34 @@
+<!-- ===========================================================
+     Archive — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-archive">
+    <div class="page-head">
+      <div class="page-title">Request Archive</div>
+      <div class="page-sub">All reviewed branch status requests, most recent first.</div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-chip active" data-filter="all">All</div>
+      <div class="filter-chip" data-filter="approved">Approved</div>
+      <div class="filter-chip" data-filter="rejected">Rejected</div>
+    </div>
+    <div class="request-admin-table-wrap">
+      <table class="request-admin-table">
+        <thead>
+          <tr>
+            <th class="view-col">View</th>
+            <th>Request ID</th>
+            <th>Branch</th>
+            <th>Request</th>
+            <th>Details</th>
+            <th>Date Submitted</th>
+            <th>Status</th>
+            <th>Reviewed By</th>
+          </tr>
+        </thead>
+        <tbody id="archiveTableBody"></tbody>
+      </table>
+      <div id="archiveTableEmpty" class="request-admin-empty" style="display:none;">No archived requests yet.</div>
+    </div>
+  </div>
+

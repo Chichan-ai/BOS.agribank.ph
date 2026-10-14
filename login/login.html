@@ -1,0 +1,63 @@
+<!-- ===========================================================
+     Login Page — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+<div id="login-page">
+  <!-- ============ LEFT: BRAND / ANNOUNCEMENT PANEL ============ -->
+  <section class="media" aria-label="Announcements">
+    <div class="media-track" id="mediaTrack">
+      <div class="media-slide active">
+        <img class="ad-photo" src="assets/Untitled design (10).png" alt="Advertisement 1" onerror="this.style.display='none';">
+      </div>
+      <div class="media-slide">
+        <img class="ad-photo" src="assets\ChatGPT Image Jul 23, 2026, 05_33_12 PM.png" alt="Advertisement 2" onerror="this.style.display='none';">
+      </div>
+      <div class="media-slide">
+        <img class="ad-photo" src="assets\ChatGPT Image Jul 23, 2026, 05_24_35 PM.png" alt="Advertisement 3" onerror="this.style.display='none';">
+      </div>
+    </div>
+    <div class="media-dots" id="mediaDots">
+      <span class="active" onclick="goToSlide(0)"></span>
+      <span onclick="goToSlide(1)"></span>
+      <span onclick="goToSlide(2)"></span>
+    </div>
+  </section>
+
+  <!-- ============ RIGHT: LOGIN PANEL ============ -->
+  <aside class="panel" aria-label="CBAMS login">
+
+    <div class="brand">
+      <img src="assets/ABC-RB  - APPROVED  LOGO - FULL COLOR-01.png" alt="Agribank Logo" class="brand-logo" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 340 100%22><text x=%220%22 y=%2260%22 font-family=%22Nunito, Arial, sans-serif%22 font-weight=%22800%22 font-size=%2244%22 fill=%22%232e8b3f%22>AGRIBANK</text><text x=%222%22 y=%2280%22 font-family=%22Arial, sans-serif%22 font-weight=%22700%22 font-size=%2210%22 fill=%22%231c1e21%22 letter-spacing=%221%22>AGRIBUSINESS BANKING CORPORATION</text></svg>'">
+    </div>
+
+    <div class="portal-title">Branch Operations System</div>
+
+    <form id="loginForm">
+      <div class="field-row">
+        <label for="loginUsername">Email</label>
+        <input type="email" id="loginUsername" name="email" autocomplete="email" required autofocus>
+      </div>
+      <div class="field-row">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+      </div>
+      <div class="show-pass-row">
+        <button type="button" id="toggleVis">Show Password</button>
+      </div>
+
+      <p class="login-error" id="loginError">Invalid username or password.</p>
+
+      <button type="submit" class="btn-login">Log in</button>
+    </form>
+
+    <div class="advisories">
+      <h4>BRANCH ANNIVERSARIES</h4>
+      <div class="caption">Current &amp; Upcoming (Next 30 Days)</div>
+      <div id="anniversaryList"></div>
+    </div>
+
+    <p class="concern-text">Do you have a concern? Submit a ticket @ <a href="https://helpdesk.agribank.com.ph/User/Login" target="_blank" rel="noopener">IT Helpdesk</a></p>
+  </aside>
+
+</div>
+

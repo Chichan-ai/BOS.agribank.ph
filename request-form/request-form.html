@@ -1,0 +1,131 @@
+<!-- ===========================================================
+     Request Form — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-request">
+    <div class="page-head">
+      <div class="page-title">Branch Status Request</div>
+      <div class="page-sub">View your recent submissions or create a new branch closure/reopening request.</div>
+    </div>
+
+    <!-- REQUEST LIST MODULE -->
+    <div class="request-module" id="requestListModule">
+      <div class="request-module-head">
+        <div>
+          <div class="request-module-title">Recent Submitted Requests</div>
+          <div class="request-module-sub">Your latest requests and their current approval status.</div>
+        </div>
+        <button type="button" class="btn btn-primary request-edit-only" id="openRequestFormBtn">+ Request</button>
+      </div>
+
+      <div class="request-table-wrap">
+        <table class="request-table">
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Branch</th>
+              <th>Request</th>
+              <th>Details</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="mySubmissionsTableBody"></tbody>
+        </table>
+        <div id="mySubmissionsEmpty" class="request-empty request-empty-hidden">No submitted requests yet.</div>
+      </div>
+    </div>
+
+    <!-- REQUEST FORM MODULE -->
+    <div class="request-form-module" id="requestFormModule">
+      <div class="request-module">
+        <div class="request-module-head">
+          <div>
+            <div class="request-module-title">New Branch Status Request</div>
+            <div class="request-module-sub">Complete the form below. Your request will be sent to an admin for approval.</div>
+          </div>
+          <button type="button" class="btn btn-ghost" id="backToRequestListBtn">← Back to Requests</button>
+        </div>
+
+        <div class="form-card request-form-card">
+          <form id="requestForm">
+            <div class="f-group">
+              <label for="reqBranch">Branch</label>
+              <select id="reqBranch" required>
+                <option value="" disabled selected>Select a branch…</option>
+              </select>
+              <div class="branch-preview" id="branchPreview"></div>
+            </div>
+
+            <div class="f-group">
+              <label>Requested action</label>
+              <div class="status-choice">
+                <label class="status-opt sel-closed" id="optClosed">
+                  <input type="radio" name="reqStatus" value="closed">
+                  <span class="so-label">Report Closed</span>
+                </label>
+                <label class="status-opt sel-open" id="optOpen">
+                  <input type="radio" name="reqStatus" value="open">
+                  <span class="so-label">Report Reopened</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="f-group request-conditional-group" id="categoryGroup">
+              <label for="reqCategory">Category</label>
+              <select id="reqCategory"></select>
+            </div>
+
+            <div class="f-group request-conditional-group" id="newCategoryGroup">
+              <label for="newCategoryInput">New category name</label>
+              <div class="cat-inline-add">
+                <input type="text" id="newCategoryInput" placeholder="e.g. Civil Unrest">
+                <button type="button" class="btn btn-ghost btn-sm" id="addCategoryBtn">Add</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="cancelCategoryBtn">Cancel</button>
+              </div>
+              <div class="f-help">Creates a new top-level category with its own subcategories.</div>
+            </div>
+
+            <div class="f-group request-conditional-group" id="subcategoryGroup">
+              <label for="reqSubcategory">Subcategory</label>
+              <select id="reqSubcategory"></select>
+            </div>
+
+            <div class="f-group request-conditional-group" id="newSubcategoryGroup">
+              <label for="newSubcategoryInput">New subcategory name</label>
+              <div class="cat-inline-add">
+                <input type="text" id="newSubcategoryInput" placeholder="e.g. Landslide">
+                <button type="button" class="btn btn-ghost btn-sm" id="addSubcategoryBtn">Add</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="cancelSubcategoryBtn">Cancel</button>
+              </div>
+              <div class="f-help">Adds a new subcategory under the selected category.</div>
+            </div>
+
+            <div class="closed-datetime-row">
+              <div class="f-group closed-datetime-group" id="closedFromGroup">
+                <label for="reqClosedFrom">Closed from (Date &amp; Time)</label>
+                <input type="datetime-local" id="reqClosedFrom" min="">
+                <div class="f-help">The date and time the branch closure begins.</div>
+              </div>
+              <div class="f-group closed-datetime-group" id="closedUntilGroup">
+                <label for="reqClosedUntil">Closed until (Date &amp; Time)</label>
+                <input type="datetime-local" id="reqClosedUntil" min="">
+                <div class="f-help">The branch will remain closed until this date and time.</div>
+              </div>
+            </div>
+
+            <div class="f-group">
+              <label for="reqReason">Details</label>
+              <textarea id="reqReason" placeholder="Describe what happened and any relevant context (LGU advisory, ETA to resume, etc.)" required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Submit for approval</button>
+              <button type="button" class="btn btn-ghost" id="reqResetBtn">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+

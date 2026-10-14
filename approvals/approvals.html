@@ -1,0 +1,55 @@
+<!-- ===========================================================
+     Approvals — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-approval">
+    <div class="page-head">
+      <div class="page-title">Pending Approvals</div>
+      <div class="page-sub">Review submitted branch status requests before approving or rejecting them.</div>
+    </div>
+    <div id="approvalAdminBlock" class="admin-only block">
+      <div class="request-admin-table-wrap">
+        <table class="request-admin-table">
+          <thead>
+            <tr>
+              <th class="view-col">View</th>
+              <th>Request ID</th>
+              <th>Branch</th>
+              <th>Request</th>
+              <th>Details</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="pendingTableBody"></tbody>
+        </table>
+        <div id="pendingTableEmpty" class="request-admin-empty">No pending requests. New submissions will appear here.</div>
+      </div>
+    </div>
+    <div class="locked-state admin-hide" id="approvalLocked">
+      <div class="ico">🔒</div>
+      <h3>Admin access required</h3>
+      <p>You're viewing CBAMS as a User. Switch to Admin from the account menu to review and approve pending branch status requests.</p>
+    </div>
+  </div>
+
+
+<div class="request-detail-scrim" id="requestDetailScrim"></div>
+<div class="request-detail-modal" id="requestDetailModal" role="dialog" aria-modal="true" aria-labelledby="requestDetailTitle">
+  <div class="request-detail-head">
+    <div>
+      <h3 id="requestDetailTitle">Request Details</h3>
+      <div class="sub" id="requestDetailSubtitle"></div>
+    </div>
+    <button type="button" class="request-detail-close" id="requestDetailClose" aria-label="Close">×</button>
+  </div>
+  <div class="request-detail-body">
+    <div class="request-detail-grid" id="requestDetailGrid"></div>
+  </div>
+  <div class="request-detail-foot" id="requestDetailFoot">
+    <button type="button" class="btn btn-ghost" id="requestDetailCloseBtn">Close</button>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+

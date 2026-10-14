@@ -1,0 +1,104 @@
+<!-- ===========================================================
+     Header & Navigation — markup fragment (loaded into index.html)
+     Two-row layout: logo/title + account menu on top, navigation below.
+     =========================================================== -->
+
+<header class="topbar">
+  <div class="tb-box">
+    <div class="tb-top">
+      <div class="brand brand-home" id="brand-home">
+        <img src="assets/ABC-RB  - APPROVED  LOGO - FULL COLOR-04.png" alt="Agribank Logo" class="brand-logo">
+        <span class="brand-title">Branch Operations System</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="account" id="account-cell">
+        <div class="acc-btn" title="Account Menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.2 19c1.5-2.4 3.5-3.4 5.8-3.4s4.3 1 5.8 3.4"/></svg>
+        </div>
+        <div class="account-dropdown" id="dd-account">
+          <div class="who">
+            <div class="avatar" id="userAvatar">FJ</div>
+            <div><div class="n" id="userNameFull">fjprincipe</div><div class="r" id="userRoleFull">Admin · NCR</div></div>
+          </div>
+          <a href="#" id="link-view-profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>My profile</a>
+          <a href="#" id="link-change-password"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Change Password</a>
+          <a href="#" id="logoutLink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Sign-out</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navrow">
+      <div class="navitem current navitem-positioned role-dashboard-nav" id="nav-dashboard"><svg class="nv" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Dashboard</div>
+      <div class="navitem navitem-positioned role-records-nav" id="nav-records"><svg class="nv" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Records <span class="chev">▾</span>
+        <div class="dropdown" id="dd-records">
+          <a href="#" id="link-request">Request</a>
+          <a href="#" id="link-approval" class="admin-only">Approval <span class="pill pending is-hidden" id="pendingCountBadge"></span></a>
+          <a href="#" id="link-approval-locked" class="locked">Approval <span class="lock">🔒 Admin</span></a>
+          <a href="#" id="link-archive">Archive</a>
+        </div>
+      </div>
+      <div class="navitem navitem-positioned role-directory-nav" id="nav-directory"><svg class="nv" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Branch Directory</div>
+      <div class="navitem navitem-positioned role-maintenance-nav" id="nav-forms"><svg class="nv" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Maintenance <span class="chev">▾</span>
+        <div class="dropdown" id="dd-forms">
+          <a href="#" id="link-sms" class="maintenance-admin-only">SMS Notification</a>
+          <a href="#" id="link-reports" class="maintenance-reports">Reports</a>
+          <a href="#" id="link-holidays" class="maintenance-admin-only">Holidays List</a>
+          <a href="#" id="link-user-access" class="maintenance-admin-only">User Access Settings</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="sms-scrim" id="profileScrim"></div>
+<div class="sms-modal" id="profileModal">
+  <div class="sms-modal-head">
+    <h3>My Profile</h3>
+    <button class="sms-close" id="profileModalClose">✕</button>
+  </div>
+  <div class="sms-modal-body">
+    <div class="ab-modal-body profile-modal-body">
+      <div class="f-group">
+        <label>Full Name</label>
+        <div id="profFullName" class="profile-value profile-name">—</div>
+      </div>
+      <div class="f-group">
+        <label>Username</label>
+        <div id="profUsername" class="profile-value">—</div>
+      </div>
+      <div class="f-group">
+        <label>Email</label>
+        <div id="profEmail" class="profile-value">—</div>
+      </div>
+      <div class="f-group">
+        <label>Role</label>
+        <div id="profRole" class="profile-value">—</div>
+      </div>
+      <div class="f-group">
+        <label>Permissions</label>
+        <div id="profPerms" class="profile-permissions"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sms-modal-foot">
+    <button class="btn btn-ghost" id="profileCloseBtn">Close</button>
+  </div>
+</div>
+
+<div class="sms-scrim" id="pwScrim"></div>
+<div class="sms-modal" id="pwModal">
+  <div class="sms-modal-head">
+    <h3>Change Password</h3>
+    <button class="sms-close" id="pwModalClose">✕</button>
+  </div>
+  <div class="sms-modal-body">
+    <div class="ab-modal-body profile-modal-body">
+      <div class="f-group"><label>Current Password</label><input type="password" id="pwCurrent" autocomplete="current-password"></div>
+      <div class="f-group"><label>New Password</label><input type="password" id="pwNew" autocomplete="new-password"><div class="f-help">At least 8 characters.</div></div>
+      <div class="f-group"><label>Confirm New Password</label><input type="password" id="pwConfirm" autocomplete="new-password"></div>
+      <div class="pw-err" id="pwError"></div>
+    </div>
+  </div>
+  <div class="sms-modal-foot">
+    <button class="btn btn-ghost" id="pwCancelBtn">Cancel</button>
+    <button class="btn btn-primary" id="pwSaveBtn">Update Password</button>
+  </div>
+</div>

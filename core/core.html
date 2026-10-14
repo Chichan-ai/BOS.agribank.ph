@@ -1,0 +1,19 @@
+<!-- ===========================================================
+     Core / Shared (config, state, auth, toasts, rendering, init) — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+<div class="sms-scrim" id="sessionTimeoutScrim"></div>
+<div class="sms-modal timeout-modal" id="sessionTimeoutModal">
+  <div class="sms-modal-body">
+    <div class="timeout-icon">⏱</div>
+    <p><strong>You've been inactive for a while.</strong></p>
+    <p>For your security, you'll be automatically logged out in:</p>
+    <div class="timeout-countdown" id="sessionTimeoutCountdown">01:00</div>
+    <p>Click "Stay Logged In" to continue your session.</p>
+  </div>
+  <div class="timeout-modal-foot">
+    <button class="btn btn-ghost" id="sessionTimeoutLogoutBtn">Log Out Now</button>
+    <button class="btn btn-primary" id="sessionTimeoutStayBtn">Stay Logged In</button>
+  </div>
+</div>
+

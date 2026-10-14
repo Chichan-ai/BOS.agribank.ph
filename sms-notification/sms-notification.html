@@ -1,0 +1,91 @@
+<!-- ===========================================================
+     SMS Notification (mockup) — markup fragment (loaded into index.html)
+     =========================================================== -->
+
+  <div class="view" id="view-sms">
+    <div class="page-head">
+      <div class="page-title">SMS Notification</div>
+      <div class="page-sub">Configure an automated daily SMS report listing all branches that are currently closed. This is a mockup — no messages are actually sent.</div>
+    </div>
+
+    <div class="form-layout">
+      <div class="form-card">
+        <h2>SMS Configuration</h2>
+        <div class="hint">Set up who receives the daily branch status report and customize the message template.</div>
+
+        <div class="sms-config-note">
+          <strong>ℹ Mockup Notice</strong> — This feature is under development. The "View Message" button below will render a sample SMS based on the current branch statuses. No messages will be sent.
+        </div>
+
+        <form id="smsForm">
+          <div class="f-group">
+            <label for="smsRecipients">Recipients</label>
+            <input type="text" id="smsRecipients" value="0917-555-4657, 0917-555-7912, 0917-555-8527, 0917-555-6155" placeholder="Comma-separated phone numbers">
+            <div class="f-help">Comma-separated mobile numbers. These are mockup values.</div>
+          </div>
+
+          <div class="f-group">
+            <label for="smsSchedule">Schedule</label>
+            <select id="smsSchedule">
+              <option value="daily-6am" selected>Daily at 6:00 AM</option>
+              <option value="daily-12pm">Daily at 12:00 PM</option>
+              <option value="daily-6pm">Daily at 6:00 PM</option>
+              <option value="weekly-monday">Weekly every Monday</option>
+            </select>
+          </div>
+
+          <div class="f-group">
+            <label for="smsTemplate">Message Template</label>
+            <textarea id="smsTemplate" rows="10">[CBAMS] Daily Branch Status Report — {{DATE}}
+
+CLOSED today:
+{{CLOSED_LIST}}
+
+Total: {{CLOSED_COUNT}} closed of {{TOTAL_COUNT}} branches
+For concerns, contact the CBAMS Helpdesk.</textarea>
+            <div class="f-help">Use {{DATE}}, {{CLOSED_LIST}}, {{CLOSED_COUNT}}, and {{TOTAL_COUNT}} as placeholders. These will be replaced automatically.</div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" id="smsViewBtn">View Message</button>
+            <button type="button" class="btn btn-ghost" id="smsTestBtn">Send Test</button>
+            <button type="submit" class="btn btn-ghost" id="smsSaveBtn">Save</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tips-card">
+        <h3>How the daily SMS works</h3>
+        <ul>
+          <li>Every day at the scheduled time, CBAMS compiles a list of all branches with <b>closed</b> status.</li>
+          <li>The message is sent to all configured recipients.</li>
+          <li>Placeholders in the template are replaced with real data at send time.</li>
+          <li>This is a <b>mockup</b> — no actual SMS integration is active yet.</li>
+        </ul>
+        <div style="margin-top:14px;">
+          <h4 style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;">Current Recipients</h4>
+          <div id="smsRecipientTags" class="sms-recipients"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="sms-scrim" id="smsScrim"></div>
+<div class="sms-modal" id="smsModal">
+  <div class="sms-modal-head">
+    <h3>SMS Preview — Daily Branch Status Report</h3>
+    <button class="sms-close" id="smsModalClose">✕</button>
+  </div>
+  <div class="sms-modal-body">
+    <div class="sms-sender">CBAMS automated message</div>
+    <div class="sms-phone">
+      <div class="sms-bubble" id="smsBubble"></div>
+    </div>
+    <div class="sms-timestamp" id="smsTimestamp"></div>
+  </div>
+  <div class="sms-modal-foot">
+    <button class="btn btn-ghost" id="smsModalCloseBtn">Close</button>
+  </div>
+</div>
+
