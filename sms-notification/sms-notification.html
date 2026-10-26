@@ -36,13 +36,13 @@
 
           <div class="f-group">
             <label for="smsTemplate">Message Template</label>
-            <textarea id="smsTemplate" rows="10">[CBAMS] Daily Branch Status Report — {{DATE}}
+            <textarea id="smsTemplate" rows="10">[BOS] Daily Branch Status Report — {{DATE}}
 
 CLOSED today:
 {{CLOSED_LIST}}
 
 Total: {{CLOSED_COUNT}} closed of {{TOTAL_COUNT}} branches
-For concerns, contact the CBAMS Helpdesk.</textarea>
+For concerns, contact the BOS Helpdesk.</textarea>
             <div class="f-help">Use {{DATE}}, {{CLOSED_LIST}}, {{CLOSED_COUNT}}, and {{TOTAL_COUNT}} as placeholders. These will be replaced automatically.</div>
           </div>
 
@@ -57,7 +57,7 @@ For concerns, contact the CBAMS Helpdesk.</textarea>
       <div class="tips-card">
         <h3>How the daily SMS works</h3>
         <ul>
-          <li>Every day at the scheduled time, CBAMS compiles a list of all branches with <b>closed</b> status.</li>
+          <li>Every day at the scheduled time, BOS compiles a list of all branches with <b>closed</b> status.</li>
           <li>The message is sent to all configured recipients.</li>
           <li>Placeholders in the template are replaced with real data at send time.</li>
           <li>This is a <b>mockup</b> — no actual SMS integration is active yet.</li>
@@ -78,7 +78,7 @@ For concerns, contact the CBAMS Helpdesk.</textarea>
     <button class="sms-close" id="smsModalClose">✕</button>
   </div>
   <div class="sms-modal-body">
-    <div class="sms-sender">CBAMS automated message</div>
+    <div class="sms-sender">BOS automated message</div>
     <div class="sms-phone">
       <div class="sms-bubble" id="smsBubble"></div>
     </div>

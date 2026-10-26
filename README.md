@@ -1,6 +1,6 @@
-# CBAMS — modular structure
+# BOS — modular structure
 
-This is the original single-file `index.html` (CBAMS — Agribank Branch
+This is the original single-file `index.html` (BOS — Agribank Branch
 Operations) split into one folder per feature module, each with its own
 `.css` / `.html` / `.js` where the original design actually had
 module-specific rules or code.

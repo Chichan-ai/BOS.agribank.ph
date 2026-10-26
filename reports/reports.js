@@ -79,7 +79,7 @@ function exportReportCSV(rows){
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `CBAMS_Maintenance_Report_${new Date().toISOString().split('T')[0]}.csv`;
+  a.download = `BOS_Maintenance_Report_${new Date().toISOString().split('T')[0]}.csv`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
