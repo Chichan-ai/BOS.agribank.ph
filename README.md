@@ -20,6 +20,11 @@ npx serve .
 
 Then open the printed URL in your browser.
 
+To enable account deletion, deploy the `delete-user` Supabase Edge Function
+with the Supabase CLI (`supabase functions deploy delete-user`). The function
+uses the project's `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and
+`SUPABASE_SERVICE_ROLE_KEY` environment variables and only permits Admin I.
+
 ## Folder layout
 
 ```

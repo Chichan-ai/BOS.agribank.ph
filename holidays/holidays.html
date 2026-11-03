@@ -7,8 +7,8 @@
       <div class="page-title">2026 Philippine Holidays</div>
       <div class="page-sub">Based on Proclamation No. 1006 and local proclamations. Local holiday dates are based on 2025 proclamations and may change once 2026 official proclamations are issued.</div>
     </div>
-    <div class="filter-row" id="holidayFilterRow" style="justify-content:space-between;align-items:center;">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <div class="holiday-controls">
+      <div class="holiday-filter-chips" id="holidayFilterRow">
         <div class="filter-chip active" data-filter="all">All</div>
         <div class="filter-chip" data-filter="regular">Regular Holiday</div>
         <div class="filter-chip" data-filter="special">Special (Non-Working)</div>
@@ -16,6 +16,10 @@
         <div class="filter-chip" data-filter="additional">Additional (Non-Working)</div>
         <div class="filter-chip" data-filter="local">Local Holiday</div>
       </div>
+      <label class="holiday-search">
+        <span class="holiday-search-label">Search holidays</span>
+        <input type="search" id="holidaySearch" placeholder="Search name, date, type..." autocomplete="off">
+      </label>
       <button type="button" class="btn btn-primary admin-only" id="openAddHolidayBtn">+ Add Holiday</button>
     </div>
     <div class="holiday-table-wrap">

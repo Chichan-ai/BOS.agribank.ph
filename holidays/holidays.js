@@ -157,6 +157,7 @@ const HOLIDAY_TYPE_LABELS = {
    HOLIDAYS LIST
    ========================================================= */
 let holidayFilter = 'all';
+let holidaySearchQuery = '';
 
 function getHolidayScope(h){
   if(h.branches === 'all') return '<span class="scope-national">National</span>';
@@ -168,14 +169,39 @@ function getHolidayScope(h){
   return '<span class="scope-local">' + names.join(', ') + '</span>';
 }
 
+function holidayMatchesSearch(holiday, query){
+  if(!query) return true;
+  const formattedDate = new Date(holiday.date+'T00:00:00')
+    .toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  const displayedDate = new Date(holiday.date+'T00:00:00')
+    .toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const branchNames = holiday.branches === 'all'
+    ? 'National'
+    : (holiday.branches || []).map(code=>{
+        const branch = branches.find(item=>item.code===code);
+        return `${code} ${branch?.name || ''}`;
+      }).join(' ');
+  const searchText = [
+    holiday.name,
+    holiday.date,
+    formattedDate,
+    displayedDate,
+    HOLIDAY_TYPE_LABELS[holiday.type] || holiday.type,
+    holiday.ref,
+    branchNames,
+  ].join(' ').toLocaleLowerCase();
+  return searchText.includes(query);
+}
+
 function renderHolidaysList(){
-  const filtered = holidayFilter === 'all'
+  const filtered = (holidayFilter === 'all'
     ? [...HOLIDAYS_2026]
-    : HOLIDAYS_2026.filter(h=>h.type===holidayFilter);
+    : HOLIDAYS_2026.filter(h=>h.type===holidayFilter))
+    .filter(h=>holidayMatchesSearch(h, holidaySearchQuery));
   filtered.sort((a,b)=> a.date.localeCompare(b.date));
   const tbody = document.getElementById('holidayTableBody');
   if(filtered.length === 0){
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);font-size:12px;">No holidays match this filter.</td></tr>';
+    tbody.innerHTML = `<tr><td colspan="5" class="holiday-empty">${holidaySearchQuery ? 'No holidays match your search and filter.' : 'No holidays match this filter.'}</td></tr>`;
     return;
   }
   const fmtDate = (ds) => new Date(ds+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
@@ -189,6 +215,11 @@ function renderHolidaysList(){
     </tr>`
   ).join('');
 }
+
+document.getElementById('holidaySearch').addEventListener('input', event=>{
+  holidaySearchQuery = event.target.value.trim().toLocaleLowerCase();
+  renderHolidaysList();
+});
 
 document.getElementById('link-holidays').addEventListener('click', async (e)=>{
   e.preventDefault();
@@ -265,5 +296,3 @@ document.getElementById('addHolidaySaveBtn').addEventListener('click', async fun
   refreshAll(); // branch statuses/labels can depend on isNonWorkingHoliday()
   showToast(`Holiday "${name}" added.`, 'success');
 });
-
-

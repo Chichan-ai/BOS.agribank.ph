@@ -121,7 +121,7 @@ async function loadAccessUsers(){
   if(error){ console.error(error); return; }
   ACCESS_USERS.length = 0;
   rows.forEach(u=>ACCESS_USERS.push({
-    id:u.id, name:u.username, role:u.role_label || u.role,
+    id:u.id, name:u.username, fullName:u.full_name, role:u.role_label || u.role,
     roleClass: u.role==='admin' ? 'role-admin' : u.role==='admin1' ? 'role-admin1' : u.role==='admin2' ? 'role-admin2' : u.role==='supervisor' ? 'role-supervisor' : '',
     perms:u.permissions
   }));

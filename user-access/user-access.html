@@ -7,8 +7,11 @@
       <div class="page-title">User Access Settings</div>
       <div class="page-sub">Manage users and their permissions for system modules and features. Admin I (Approval) reviews and approves/rejects branch status requests; Admin II (User Access) configures permissions and creates users. Toggle any permission below to customize further.</div>
     </div>
-    <div class="directory-head-row">
+    <div class="directory-head-row user-access-head-row">
       <div class="access-hint access-hint-inline">Toggle permissions for each user. As the main Admin, your changes save immediately; Admin II's changes are submitted for your approval below.</div>
+      <div class="user-access-search">
+        <input type="search" id="userAccessSearch" aria-label="Search users" placeholder="Search users..." autocomplete="off">
+      </div>
       <button type="button" class="btn btn-primary admin-only" id="openAddUserBtn">+ Add User</button>
     </div>
     <div class="access-table-wrap">
@@ -128,4 +131,3 @@
     <button class="btn btn-primary" id="addUserSaveBtn">Create User</button>
   </div>
 </div>
-

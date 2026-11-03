@@ -28,24 +28,48 @@ function escapeAccessHTML(value){
 
 function renderAccessTable(){
   const tbody = document.getElementById('accessTableBody');
-  tbody.innerHTML = ACCESS_USERS.map(u=>{
+  const query = document.getElementById('userAccessSearch').value.trim().toLocaleLowerCase();
+  const users = ACCESS_USERS.filter(user =>
+    `${user.name} ${user.fullName || ''} ${user.role}`.toLocaleLowerCase().includes(query)
+  );
+  if(!users.length){
+    const colspan = ACCESS_PERMS.length + 2 + (isAdmin1() ? 1 : 0);
+    tbody.innerHTML = `<tr><td class="user-access-empty" colspan="${colspan}">${query ? 'No users match your search.' : 'No users found.'}</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = users.map(u=>{
     const roleTag = u.roleClass ? `<span class="au-role ${u.roleClass}">${escapeAccessHTML(u.role)}</span>` : `<span class="au-role">${escapeAccessHTML(u.role)}</span>`;
     const toggles = ACCESS_PERMS.map(p=>{
       const checked = u.perms?.[p.key] ? 'checked' : '';
       return `<td><label class="toggle"><input type="checkbox" ${checked} data-user="${u.id}" data-perm="${p.key}"><span class="slider"></span></label></td>`;
     }).join('');
     const action = isAdmin1()
-      ? `<td class="user-access-user-action-cell admin-only"><button type="button" class="btn btn-ghost btn-sm" data-reset-user="${u.id}">Reset Password</button></td>`
+      ? `<td class="user-access-user-action-cell admin-only"><div class="user-access-user-actions"><button type="button" class="btn btn-ghost btn-sm" data-reset-user="${u.id}">Reset Password</button>${u.id !== currentUser.id ? `<button type="button" class="btn btn-danger btn-sm" data-delete-user="${u.id}">Delete</button>` : '<span aria-hidden="true"></span>'}</div></td>`
       : '';
     return `<tr><td class="au-name">${escapeAccessHTML(u.name)}</td><td>${roleTag}</td>${toggles}${action}</tr>`;
   }).join('');
 }
+document.getElementById('userAccessSearch').addEventListener('input', renderAccessTable);
 
 let resetPasswordUserId = null;
 function closeResetPasswordModal(){
   resetPasswordUserId = null;
   document.getElementById('resetPasswordScrim').classList.remove('show');
   document.getElementById('resetPasswordModal').classList.remove('show');
+}
+async function edgeFunctionErrorMessage(error){
+  const response = error?.context;
+  if(response instanceof Response){
+    try{
+      const body = await response.clone().json();
+      if(typeof body?.error === 'string') return body.error;
+      if(typeof body?.message === 'string') return body.message;
+    }catch{
+      return `${error.message || 'Edge Function request failed'} (HTTP ${response.status})`;
+    }
+    return `${error.message || 'Edge Function request failed'} (HTTP ${response.status})`;
+  }
+  return error?.message || 'Unknown error';
 }
 document.getElementById('accessTableBody').addEventListener('click', e=>{
   const button = e.target.closest('[data-reset-user]');
@@ -58,6 +82,25 @@ document.getElementById('accessTableBody').addEventListener('click', e=>{
   document.getElementById('resetPasswordScrim').classList.add('show');
   document.getElementById('resetPasswordModal').classList.add('show');
   document.getElementById('resetPasswordInput').focus();
+});
+document.getElementById('accessTableBody').addEventListener('click', async e=>{
+  const button = e.target.closest('[data-delete-user]');
+  if(!button || !isAdmin1()) return;
+  const user = ACCESS_USERS.find(u=>u.id===button.dataset.deleteUser);
+  if(!user || user.id===currentUser.id) return;
+  if(!window.confirm(`Delete user "${user.name}"? This will permanently remove their account.`)) return;
+
+  button.disabled = true;
+  try{
+    const { data, error } = await sb.functions.invoke('delete-user', { body:{ userId:user.id } });
+    if(error || data?.error) throw error || new Error(data.error);
+    ACCESS_USERS.splice(ACCESS_USERS.indexOf(user), 1);
+    renderAccessTable();
+    showToast(`User "${user.name}" deleted successfully.`, 'success');
+  }catch(err){
+    showToast('Failed to delete user: ' + await edgeFunctionErrorMessage(err), 'error');
+    button.disabled = false;
+  }
 });
 document.getElementById('resetPasswordModalClose').addEventListener('click', closeResetPasswordModal);
 document.getElementById('resetPasswordCancelBtn').addEventListener('click', closeResetPasswordModal);
@@ -73,7 +116,7 @@ document.getElementById('resetPasswordSaveBtn').addEventListener('click', async 
     if(error || data?.error) throw error || new Error(data.error);
     showToast('Password reset successfully.', 'success');
     closeResetPasswordModal();
-  }catch(err){ showToast('Failed to reset password: ' + (err?.message || 'Unknown error'), 'error'); }
+  }catch(err){ showToast('Failed to reset password: ' + await edgeFunctionErrorMessage(err), 'error'); }
   finally{ button.disabled = false; }
 });
 
@@ -347,5 +390,3 @@ document.getElementById('addUserSaveBtn').addEventListener('click', async functi
     saveBtn.textContent = 'Create User';
   }
 });
-
-

@@ -1,10 +1,22 @@
 /* ===========================================================
    Holidays List — styles
    ---------------------------------------------------------------
-   The holidays table/filters/modal reuse shared classes defined
-   in core/core.css (.btn, .f-group, .filter-chip, .page-head),
+   The holidays table/modal reuse shared classes defined in
+   core/core.css (.btn, .f-group, .page-head),
    approvals/approvals.css (.holiday-table) and
    branch-directory/branch-directory.css (.sms-modal/.ab-modal,
-   reused for the "Add Holiday" dialog). No holiday-only rules
-   existed in the original design — add overrides here if needed.
+   reused for the "Add Holiday" dialog).
    =========================================================== */
+
+.holiday-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.holiday-filter-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1 1 620px;}
+.holiday-search{display:flex;align-items:center;gap:8px;flex:0 1 270px;min-width:210px;}
+.holiday-search-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.holiday-search input{width:100%;height:34px;padding:7px 10px;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--ink);font:inherit;}
+.holiday-search input:focus{outline:2px solid rgba(46,139,63,.2);border-color:var(--forest);}
+.holiday-controls #openAddHolidayBtn{flex-shrink:0;}
+.holiday-empty{padding:24px!important;color:var(--muted);font-size:12px;text-align:center;}
+
+@media(max-width:900px){
+  .holiday-filter-chips,.holiday-search{flex:1 1 100%;}
+}
